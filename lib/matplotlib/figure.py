@@ -2420,6 +2420,14 @@ class SubFigure(FigureBase):
 
 
 @_docstring.interpd
+@_api.define_aliases({
+    "size_inches": ["figsize"],
+    "layout": ["layout_engine"]
+})
+
+def process_aliases(*, size_inches=None, layout=None):
+    return {"size_inches": size_inches, "layout": layout}
+
 class Figure(FigureBase):
     """
     The top level container for all the plot elements.

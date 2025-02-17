@@ -65,6 +65,19 @@ def test_align_labels():
 
     fig.align_labels()
 
+def test_function(size_inches=None, layout=None):
+    return {"size_inches": size_inches, "layout": layout}
+
+def test_process_aliases():
+    result = process_aliases(size_inches=(10, 10), layout="tight")
+    assert result == {"size_inches": (10, 10), "layout": "tight"}
+
+    with pytest.raises(ValueError):
+        process_aliases(figsize="not a tuple")
+
+    with pytest.raises(ValueError):
+        process_aliases(layout_engine=123)
+
 
 @image_comparison(['figure_align_titles_tight.png',
                    'figure_align_titles_constrained.png'],
